@@ -1,0 +1,14 @@
+<h1>Sign In</h1>
+
+<form action="<%= session_url %>" method="POST">
+	<%= auth_token %>
+	<label> Username:
+		<input type="text" name="user[username]"></input><br>
+	</label>
+	<label> Password:
+		<input type="text" name="user[password]"><br>
+	</label>
+
+	<button type="submit">Sign In</input>
+
+</form>
