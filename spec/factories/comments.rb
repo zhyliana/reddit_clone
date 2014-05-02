@@ -5,7 +5,6 @@
 #  id                :integer          not null, primary key
 #  body              :text             not null
 #  parent_comment_id :integer
-#  parent_link_id    :integer
 #  link_id           :integer          not null
 #  user_id           :integer          not null
 #  created_at        :datetime
@@ -13,12 +12,17 @@
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
+require 'faker'
 
 FactoryGirl.define do
   factory :comment do
-    body "MyText"
-    parent_comment_id 1
-    parent_link_id 1
-    link_id 1
+    body { Faker::Lorem.sentence }
+    parent_comment_id nil
+    association :link, { factory: :link }
+    association :author, { factory: :user }
+
+    # factory :comment_with_parent do
+#       association :comments, { factory: :comment }
+#     end
   end
 end

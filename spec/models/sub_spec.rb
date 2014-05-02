@@ -12,5 +12,18 @@
 require 'spec_helper'
 
 describe Sub do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:sub) { create(:sub) }
+
+  it { should be_valid }
+
+  describe "validations" do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:user_id) }
+  end
+
+  describe "associations" do
+    it { should belong_to(:admin) }
+    it { should have_many(:links) }
+    it { should have_many(:comments) }
+  end
 end

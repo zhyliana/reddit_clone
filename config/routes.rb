@@ -1,25 +1,13 @@
 RedditClone::Application.routes.draw do
-  get "comments/new"
-  get "comments/create"
-  get "comments/show"
-  get "comments/destroy"
-  get "comments/index"
-  get "comments/edit"
-  get "comments/update"
-  get "links/new"
-  get "links/create"
-  get "links/show"
-  get "links/destroy"
-  get "links/index"
-  get "links/edit"
-  get "links/update"
-  get "subs/new"
-  get "subs/create"
-  get "subs/show"
-  get "subs/destroy"
-  get "subs/index"
-  get "subs/edit"
-  get "subs/update"
+
   resources :users, only: [:new, :create, :show, :index]
   resource :session, only: [:new, :create, :destroy]
+  resources :subs do
+    resources :links do
+      resources :comments, only: [:create]
+    end
+  end
+
+  resources :comments, only: [:show]
+
 end

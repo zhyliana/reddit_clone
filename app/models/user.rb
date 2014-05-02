@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validates :username, uniqueness: true
 
+  has_many :subs
+  has_many :links
+  has_many :comments
+
   def password=(plain_text)
     @password = plain_text
     self.password_digest = BCrypt::Password.create(plain_text) if @password

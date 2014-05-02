@@ -1,2 +1,23 @@
 <h1>Links#new</h1>
 <p>Find me in app/views/links/new.html.erb</p>
+
+<form action="<%= sub_links_url(params[:id]) %>" method="POST">
+	<%= auth_token %>
+
+	<input type="hidden" name="link[user_id]" value="<%= current_user.id %>">
+
+	<label> Title:
+		<input type="text" name="link[title]"></input><br>
+	</label>
+
+	<label> Body:
+		<input type="text" name="link[body]"></input><br>
+	</label>
+
+	<label> URL:
+		<input type="text" name="link[url]"></input><br>
+	</label>
+
+	<button type="submit">Create Link</input>
+
+</form>

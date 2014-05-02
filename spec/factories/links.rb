@@ -4,22 +4,21 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)      not null
-#  url        :string(255)
 #  body       :string(255)
 #  user_id    :integer          not null
-#  sub_id     :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
+#  url        :string(255)      default(""), not null
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
+require 'faker'
 
 FactoryGirl.define do
   factory :link do
-    title "MyString"
-    url "MyString"
-    body "MyString"
-    user_id 1
-    sub_id 1
+    title {Faker::Commerce.product_name}
+    url {Faker::Internet.url}
+    body {Faker::Company.bs}
+    association :op, { factory: :user }
   end
 end

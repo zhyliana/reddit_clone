@@ -16,12 +16,19 @@ describe User do
   subject(:user) { create(:user) }
   let(:user2) { create(:user, password: "123458") }
 
+  it { should be_valid }
 
   describe "validations" do
     it { should validate_presence_of(:username) }
     it { should validate_presence_of(:password) }
     it { should validate_uniqueness_of(:username) }
     its(:password) { should have_at_least(6).items }
+  end
+
+  describe "associations" do
+    it { should have_many(:subs) }
+    it { should have_many(:links) }
+    it { should have_many(:comments) }
   end
 
   it 'does not store the password in the database' do
